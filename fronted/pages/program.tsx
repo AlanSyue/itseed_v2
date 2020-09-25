@@ -40,6 +40,9 @@ const Program = () => {
                     <TopTitle title="講座課程" marginBottom="6%" />
                     <CourseChain />
                 </div>
+                <div>
+                    <TopTitle title="企業參訪" marginBottom="6%" />
+                </div>
             <TemplateFooter />
         </>
     );
