@@ -3,6 +3,7 @@ import TemplateFooter from '../modules/common/Footer'
 import TopTitle from "../modules/common/Title";
 import ListChain from "../modules/common/ListChain"
 import CourseChain from "../modules/common/CourseChain"
+import CompanyChain from "../modules/common/CompanyChain";
 import styled from 'styled-components';
 
 const ProgramContent = styled.div`
@@ -42,6 +43,7 @@ const Program = () => {
                 </div>
                 <div>
                     <TopTitle title="企業參訪" marginBottom="6%" />
+                    <CompanyChain />
                 </div>
             <TemplateFooter />
         </>
