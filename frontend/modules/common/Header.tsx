@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styled from 'styled-components';
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const Logo = styled.div`
   height: 5em;
@@ -8,9 +9,8 @@ const Logo = styled.div`
 
 const LogoImg = styled.img`
   float: left;
-  margin-top: 1.5em;
-  margin-left: 5em;
-  width: 15%;
+  margin-left: 4em;
+  width: 50%;
 `;
 
 const Menu = styled.ul`
@@ -40,27 +40,36 @@ interface IProps {
   className?: string;
 }
 
-const TopHeader = ({}: IProps) => {
+const TopHeader = ({ }: IProps) => {
   return (
     <div>
       <Head>
         <title>資訊種子培訓計畫</title>
         <link rel="icon" href="/assets/layout/logo.png" />
       </Head>
-      <Logo>
-        <LogoImg src="/assets/layout/logo1.png" />
-          <nav>
-            <Menu>
-              <MenuLi><a href="about">計畫緣起</a></MenuLi>
-              <MenuLi><a href="program">計畫內容</a></MenuLi>
-              <MenuLi><a href="#">校友評價</a></MenuLi>
-              <MenuLi><a href="#">實習心得</a></MenuLi>
-              <MenuLi><a href="#">招生訊息</a></MenuLi>
-              <MenuLi><a href="#">常見問題</a></MenuLi>
-              <MenuLi><Btn>馬上報名</Btn></MenuLi>
-            </Menu>
-          </nav>
-      </Logo>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="/">
+          <LogoImg src="/assets/layout/logo1.png" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav>
+            <NavDropdown title="計畫緣起" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/about">計劃簡介</NavDropdown.Item>
+              <NavDropdown.Item href="/member">歷屆名單</NavDropdown.Item>
+              <NavDropdown.Item href="/organize">組織架構</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="/program">計畫內容</Nav.Link>
+            <Nav.Link href="#link">校友評價</Nav.Link>
+            <Nav.Link href="#link">實習心得</Nav.Link>
+            <Nav.Link href="#link">招生訊息</Nav.Link>
+            <Nav.Link href="#link">常見問題</Nav.Link>
+            <Nav.Link href="#link">
+              <Btn>馬上報名</Btn>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
   )
 }
