@@ -4,6 +4,7 @@ import ProjectBanner from '../modules/common/Project/ProjectBanner';
 import ProjectTitle from '../modules/common/Project/ProjectTitle';
 import ContentBlock from '../modules/common/Content';
 import ProjectContentTitle from '../modules/common/Project/ProjectContent';
+import ProjectTuvImg from '../modules/common/Project/ProjectTuvImg';
 import styled from 'styled-components';
 
 const ProjectContainer = styled.div`
@@ -47,6 +48,10 @@ const Project = () => {
                 </ProjectContentDiv>
                 <ProjectContentTitle>
                     專案內容
+                </ProjectContentTitle>
+                <ProjectTuvImg />
+                <ProjectContentTitle>
+                    成果展現
                 </ProjectContentTitle>
             </ProjectContainer>
         <TemplateFooter />

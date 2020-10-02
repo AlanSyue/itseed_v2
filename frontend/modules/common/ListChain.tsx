@@ -61,12 +61,14 @@ const ProjectTitle = styled.p`
 
 const Project = () => {
     return (
-        <ProjectContent>
-            <ProjectTitle>
-                TUV 專案
-            </ProjectTitle>
-            <p>「Top Up Our Value，讓團隊價值最大化」</p>
-        </ProjectContent>
+        <a href="/project" style={{"textDecoration" : "none"}}>
+            <ProjectContent>
+                <ProjectTitle>
+                    TUV 專案
+                </ProjectTitle>
+                <p>「Top Up Our Value，讓團隊價值最大化」</p>
+            </ProjectContent>
+        </a>
     );
 };
 
