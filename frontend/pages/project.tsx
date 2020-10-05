@@ -5,7 +5,9 @@ import ProjectTitle from '../modules/common/Project/ProjectTitle';
 import ContentBlock from '../modules/common/Content';
 import ProjectContentTitle from '../modules/common/Project/ProjectContent';
 import ProjectTuvImg from '../modules/common/Project/ProjectTuvImg';
+import ProjectBlock from '../modules/common/Project/ProjectBlock';
 import styled from 'styled-components';
+import { Button } from "react-bootstrap";
 
 const ProjectContainer = styled.div`
     width: 60%;
@@ -21,6 +23,33 @@ const ProjectContentDiv = styled.div`
     font-family: 'Noto Sans TC',Roboto;
     box-sizing: border-box;
     display: block;
+`;
+
+const ProjectListDiv = styled.div`
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans TC',Roboto;
+    line-height: 2;
+    box-sizing: border-box;
+    display: block;
+`;
+
+const ProjectBtn = styled(Button)`
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border: solid 1px;
+    margin-left: 4vh;
+    font-size: 15px;
+    margin-bottom: 5vh;
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    color: #333;
+    background-color: #fff;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
 `;
 
 const Project = () => {
@@ -53,6 +82,24 @@ const Project = () => {
                 <ProjectContentTitle>
                     成果展現
                 </ProjectContentTitle>
+                <ProjectListDiv>
+                    <ProjectBtn variant="outline-dark">
+                        戀愛軍情局
+                    </ProjectBtn>
+                    <ProjectBtn variant="outline-dark">
+                        談心說愛
+                    </ProjectBtn>
+                    <ProjectBtn variant="outline-dark">
+                        新聞標題，你太誇張了喔！
+                    </ProjectBtn>
+                    <ProjectBtn variant="outline-dark">
+                        眾獨
+                    </ProjectBtn>
+                    <ProjectBtn variant="outline-dark">
+                        傾盆大語
+                    </ProjectBtn>
+                    <ProjectBlock />
+                </ProjectListDiv>
             </ProjectContainer>
         <TemplateFooter />
         
