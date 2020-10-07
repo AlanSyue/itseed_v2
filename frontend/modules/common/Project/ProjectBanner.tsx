@@ -54,7 +54,8 @@ const BackButton = styled.a`
     line-height: 2;
 `;
 
-const ProjectBanner = () => {
+const ProjectBanner = (props) => {
+    const { bannerList } = props;
     return (
         <BannerBlock>
             <BannerBlockUl>
@@ -63,15 +64,15 @@ const ProjectBanner = () => {
                         <span>{"<"}</span> 返回
                     </BackButton>
                 </BannerBlockLi>
-                <BannerBlockLi>
-                    <BannerBlockA href="/about">TUV</BannerBlockA>
-                </BannerBlockLi>
-                <BannerBlockLi>
-                    <BannerBlockA href="/member">職涯</BannerBlockA>
-                </BannerBlockLi>
-                <BannerBlockLi>
-                    <BannerBlockA href="/organize">招生</BannerBlockA>
-                </BannerBlockLi>
+                {
+                    bannerList.map((val) => {
+                        return (
+                            <BannerBlockLi>
+                                <BannerBlockA href="/about">{val}</BannerBlockA>
+                            </BannerBlockLi>
+                        )
+                    })
+                }
             </BannerBlockUl>
         </BannerBlock>
     );

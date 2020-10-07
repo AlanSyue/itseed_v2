@@ -53,10 +53,15 @@ const ProjectBtn = styled(Button)`
 `;
 
 const Project = () => {
+    const bannerList = [
+        'TUV',
+        '職涯',
+        '招生'
+    ];
     return (
         <>
         <TopHeader />
-            <ProjectBanner />
+            <ProjectBanner bannerList={bannerList} />
             <ProjectTitle title="TUV 專案" marginBottom="5%" />
             <ContentBlock align="center" fontSize="29.5">
                 「不把手弄髒，怎麼知道一群人的力量可以多強大？」
