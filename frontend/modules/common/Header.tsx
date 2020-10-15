@@ -60,7 +60,7 @@ const TopHeader = ({ }: IProps) => {
               <NavDropdown.Item href="/organize">組織架構</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/program">計畫內容</Nav.Link>
-            <Nav.Link href="#link">校友評價</Nav.Link>
+            <Nav.Link href="/sharing">校友評價</Nav.Link>
             <Nav.Link href="#link">實習心得</Nav.Link>
             <Nav.Link href="#link">招生訊息</Nav.Link>
             <Nav.Link href="#link">常見問題</Nav.Link>
