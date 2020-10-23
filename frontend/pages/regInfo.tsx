@@ -1,5 +1,7 @@
-import TopHeader from '../modules/common/Header'
-import TemplateFooter from '../modules/common/Footer'
+import TopHeader from '../modules/common/Header';
+import TemplateFooter from '../modules/common/Footer';
+import TopTitle from "../modules/common/Title";
+import ContentBlock from "../modules/common/Content";
 import styled from 'styled-components';
 
 const RegInfoDiv = styled.div`
@@ -62,7 +64,11 @@ const RegCounter = styled.div`
         text-align: center;
         font-weight: 700;
     }
-`
+`;
+
+const ContentBlockCenter = styled(ContentBlock)`
+    text-align: center;
+`;
 
 const RegInfo = () => {
     return (
@@ -88,6 +94,10 @@ const RegInfo = () => {
                         <div className="counter-text">Seconds</div>
                     </div>
                 </RegCounter>
+                <TopTitle title="招生訊息" marginBottom="5%" />
+                <ContentBlockCenter>
+                    <h2>「勇敢成就平凡的自己！ 」</h2>
+                </ContentBlockCenter>
             </RegInfoDiv>
         <TemplateFooter />
         </>
