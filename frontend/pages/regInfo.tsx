@@ -71,8 +71,8 @@ const ContentBlockCenter = styled(ContentBlock)`
 `;
 
 const RegInfoDetailDiv = styled.div`
-    width: 750px;
-    height: 1000px;
+    width: 90%;
+    height: 840px;
     margin-top: 60px;
     padding-right: 15px;
     padding-left: 15px;
@@ -107,6 +107,90 @@ const RegInfoDetailDiv = styled.div`
         width: 66.66666667%;
         float: left;
     }
+
+    .title-block-center {
+        text-align: center;
+        margin: 0 auto;
+        width: 33.33333333%;
+        height: auto;
+    }
+
+    .title-block-center span {
+        padding: 5px 10px;
+        border: 1px solid #145488;
+        font-size: 16pt;
+        color: #145488;
+        margin: 0;
+        font-family: 'Noto Sans TC',Roboto;
+        line-height: 2;
+    }
+
+    .reg-info-step {
+        width: 100%;
+        margin: 40px;
+    }
+`;
+
+const RegInfoStep = styled.div`
+    color: ${props => props.color || '#00a7ba'};
+    border: #00a7ba;
+    text-align: center;
+    width: ${props => props.borderWidth || ''};
+    float: left;
+    min-height: 1px;
+    padding-right: 0;
+    padding-left: 0;
+
+    p {
+        width: 100%;
+        font-size: 14pt;
+        margin-bottom: 0;
+        line-height: 33px;
+        color: #000;
+        text-align: center;
+    }
+
+    .icon-block {
+        position: relative;
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .icon {
+        background-color: ${props => props.color || '#00a7ba'};
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+    }
+
+    .icon img {
+        margin-top: 15px;
+        width: 50px;
+        vertical-align: middle;
+        border: 0;
+    }
+
+    .wording {
+        padding: 50px 0 20px;
+        top: 30px;
+        left: 10%;
+        display: inline-block;
+        width: 80%;
+        position: absolute;
+        border-width: 2px;
+        border-style: solid;
+        z-index: -1;
+        font-size: 14pt;
+        font-weight: 500;
+    }
+
+    .wording p {
+        width: 100%;
+        margin-bottom: 5px;
+        text-align: center;
+        color: ${props => props.color || '#00a7ba'};
+    }
 `;
 
 const RegInfo = () => {
@@ -138,7 +222,6 @@ const RegInfo = () => {
                     <h2>「勇敢成就平凡的自己！ 」</h2>
                 </ContentBlockCenter>
                 <RegInfoDetailDiv>
-                    
                         <div className="title-block">
                             <span>- 培訓時間 -</span>
                         </div>
@@ -163,7 +246,59 @@ const RegInfo = () => {
                             <span>- 甄選流程 -</span>
                         </div>
                         <p>資料初審 → 公布面試名單（7/24） → 團體面試（8/2） → 公布錄取（8/8）</p>
-                    
+                        <div className="title-block-center">
+                            <span>- 報名資格 -</span>
+                        </div>
+                        <div className="reg-info-step">
+                            <RegInfoStep>
+                                <div className="icon-block">
+                                    <div className="icon">
+                                        <img src="/assets/regInfo/01.png" />
+                                    </div>
+                                    <div className="wording">
+                                        <p>【 STEP 1 】</p>
+                                        <p>官網線上報名</p>
+                                    </div>
+                                </div>
+                                <p>註冊並填寫基本資料</p>
+                                <p>將所需資料上傳</p>
+                            </RegInfoStep>
+                        </div>
+                        <div className="reg-info-step">
+                            <RegInfoStep
+                                borderWidth="30%"
+                                color="#145488"
+                            >
+                                <div className="icon-block">
+                                    <div className="icon">
+                                        <img src="/assets/regInfo/02.png" />
+                                    </div>
+                                    <div className="wording">
+                                        <p>【 STEP 2 】</p>
+                                        <p>繳交報名費</p>
+                                    </div>
+                                </div>
+                                <p>透過貝殼集器繳交報名費 100 元</p>
+                                <p>至 7/20（日） 23:59 繳交完畢</p>
+                            </RegInfoStep>
+                        </div>
+                        <div className="reg-info-step">
+                            <RegInfoStep
+                                color="#efb61e"
+                            >
+                                <div className="icon-block">
+                                    <div className="icon">
+                                        <img src="/assets/regInfo/02.png" />
+                                    </div>
+                                    <div className="wording">
+                                        <p>【 STEP 3 】</p>
+                                        <p>確認信件</p>
+                                    </div>
+                                </div>
+                                <p>確認是否於繳費完</p>
+                                <p>3 天內收到信件</p>
+                            </RegInfoStep>
+                        </div>
                 </RegInfoDetailDiv>
             </RegInfoDiv>
         <TemplateFooter />
