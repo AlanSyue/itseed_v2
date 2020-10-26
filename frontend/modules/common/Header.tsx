@@ -63,7 +63,7 @@ const TopHeader = ({ }: IProps) => {
             <Nav.Link href="/sharing">校友評價</Nav.Link>
             <Nav.Link href="/intern">實習心得</Nav.Link>
             <Nav.Link href="/regInfo">招生訊息</Nav.Link>
-            <Nav.Link href="#link">常見問題</Nav.Link>
+            <Nav.Link href="/faq">常見問題</Nav.Link>
             <Nav.Link href="#link">
               <Btn>馬上報名</Btn>
             </Nav.Link>
