@@ -32,6 +32,11 @@ const InternContainer = styled.div`
         box-shadow: 2px 3px 6px 0 #9b9b9b;
     }
 
+    .intern-block a {
+        color: #000000; 
+        text-decoration: none
+    }
+
     .inter-block-img-div {
         padding-right: 40px;
         overflow: hidden;
@@ -98,110 +103,112 @@ const Intern = () => {
                     </p>
                 </ContentBlock>
                 <InternContainer>
-                    <div className="select-button-block">
-                        <SelectButton variant="outline-dark">
-                            公司實習
-                        </SelectButton>
-                        <SelectButton variant="outline-dark">
-                            個人指導
-                        </SelectButton>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                        <div className="select-button-block">
+                            <SelectButton variant="outline-dark">
+                                公司實習
+                            </SelectButton>
+                            <SelectButton variant="outline-dark">
+                                個人指導
+                            </SelectButton>
                         </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
-                            </p>
-                        </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
-                                </p>
-                        </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                        <div className="intern-block">
+                            <a href="/internSharing">
+                                <div className="inter-block-img-div">
+                                    <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                                </div>
+                                <div className="inter-block-text-div">
+                                    <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                    <p>
+                                        每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                        文字的運用、操作的策略是否奏效都會直接反映在數字上。
                                     </p>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
-                                        </p>
-                        </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
-                                </p>
-                        </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
                                     </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
                                         </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="intern-block">
-                        <div className="inter-block-img-div">
-                            <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
-                        </div>
-                        <div className="inter-block-text-div">
-                            <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
-                            <p>
-                                每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
-                                文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
                                             </p>
+                            </div>
                         </div>
-                    </div>
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                                    </p>
+                            </div>
+                        </div>
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                                        </p>
+                            </div>
+                        </div>
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                                            </p>
+                            </div>
+                        </div>
+                        <div className="intern-block">
+                            <div className="inter-block-img-div">
+                                <img src="/assets/career/0084340f-8d31-4511-bcb7-0bf2a4f5fbd2.png" />
+                            </div>
+                            <div className="inter-block-text-div">
+                                <h2>蔡珮歆 | Mixxin 群眾集資顧問專員</h2>
+                                <p>
+                                    每當在後台看到自己用心寫的文字觸及到幾千人、開信率和 CPL（Cost-Per-Lead） 又有多少，都在在體認到行銷是非常真槍實彈的歷程，
+                                    文字的運用、操作的策略是否奏效都會直接反映在數字上。
+                                                </p>
+                            </div>
+                        </div>
                 </InternContainer>
             <TemplateFooter />
         </>
