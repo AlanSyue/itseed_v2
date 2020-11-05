@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../entity/users.entity';
+import { UserDTO } from '../DTO/users.dto';
 
 @Injectable()
 export class UserService {
@@ -23,5 +24,9 @@ export class UserService {
 
   getUserById(userId: number) {
     return this.usersRepository.findOne(userId);
+  }
+
+  updateUserById(userId: number, userData: UserDTO) {
+    return this.usersRepository.update(userId, userData);
   }
 }

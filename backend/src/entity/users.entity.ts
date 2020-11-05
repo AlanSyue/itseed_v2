@@ -19,7 +19,7 @@ export class Users {
     password: string;
 
     @Column({
-        default: true,
+        default: false,
     })
     is_verify: boolean;
     

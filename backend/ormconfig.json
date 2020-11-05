@@ -5,10 +5,10 @@
    "username": "postgres",
    "password": "Pass2020!",
    "database": "postgres",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
-      "src/entity/**/*.entity{.ts,.js}"
+      "build/entity/**/*.entity{.ts,.js}"
    ],
    "migrations": [
       "src/migration/**/*.ts"

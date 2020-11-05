@@ -3,7 +3,8 @@ import {
   Get,
   Post,
   Param,
-  Body
+  Body,
+  Put
 } from '@nestjs/common';
 import passport = require('passport');
 import { UserService } from '../service/users.service';
@@ -26,5 +27,10 @@ export class UserController {
   @Post('user')
   addUser(@Body() userData: UserDTO): Object {
     return this.userService.addUser(userData);
+  }
+
+  @Put('user/:userId')
+  updateUserById(@Param('userId') id, @Body() userData: UserDTO): Object {
+    return this.userService.updateUserById(id, userData);
   }
 }
