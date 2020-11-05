@@ -29,4 +29,8 @@ export class UserService {
   updateUserById(userId: number, userData: UserDTO) {
     return this.usersRepository.update(userId, userData);
   }
+
+  deleteUserById(userId: number) {
+    return this.usersRepository.delete(userId);
+  }
 }

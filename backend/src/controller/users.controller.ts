@@ -2,11 +2,11 @@ import {
   Controller,
   Get,
   Post,
+  Put,
+  Delete,
   Param,
-  Body,
-  Put
+  Body
 } from '@nestjs/common';
-import passport = require('passport');
 import { UserService } from '../service/users.service';
 import { UserDTO } from '../DTO/users.dto';
 
@@ -32,5 +32,10 @@ export class UserController {
   @Put('user/:userId')
   updateUserById(@Param('userId') id, @Body() userData: UserDTO): Object {
     return this.userService.updateUserById(id, userData);
+  }
+
+  @Delete('user/:userId')
+  deleteUserById(@Param('userId') id): Object {
+    return this.userService.deleteUserById(id);
   }
 }
