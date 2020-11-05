@@ -24,7 +24,7 @@ export class UserController {
   }
 
   @Post('user')
-  addUser(@Body() data: UserDTO): Object {
-    return this.userService.addUser(data);
+  addUser(@Body() userData: UserDTO): Object {
+    return this.userService.addUser(userData);
   }
 }

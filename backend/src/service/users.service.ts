@@ -10,11 +10,10 @@ export class UserService {
     private readonly usersRepository: Repository<Users>
   ) { }
 
-  addUser(data: {email: string, password: string}) {
-    console.log(data);
+  addUser(userData: {email: string, password: string}) {
     const user = new Users();
-    user.email = data.email;
-    user.password = data.password;
+    user.email = userData.email;
+    user.password = userData.password;
     return this.usersRepository.save(user);
   }
 
