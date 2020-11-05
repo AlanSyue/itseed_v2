@@ -11,9 +11,18 @@ export class UserService {
   ) { }
 
   addUser(data: {email: string, password: string}) {
+    console.log(data);
     const user = new Users();
     user.email = data.email;
     user.password = data.password;
     return this.usersRepository.save(user);
+  }
+
+  getAllUser() {
+    return this.usersRepository.find();
+  }
+
+  getUserById(userId: number) {
+    return this.usersRepository.findOne(userId);
   }
 }

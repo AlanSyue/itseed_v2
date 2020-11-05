@@ -1,15 +1,30 @@
-import { Controller, Get } from '@nestjs/common';
+import { 
+  Controller,
+  Get,
+  Post,
+  Param,
+  Body
+} from '@nestjs/common';
+import passport = require('passport');
 import { UserService } from '../service/users.service';
+import { UserDTO } from '../DTO/users.dto';
 
 @Controller()
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Get('users')
-  getHello(): any {
-    return this.userService.addUser({
-      email: 'b123105@gmail.com',
-      password: 'wejflkwejflewf'
-    });
+  findAll(): Object {
+    return this.userService.getAllUser();
+  }
+
+  @Get('user/:userId')
+  findUser(@Param('userId') id): Object {
+    return this.userService.getUserById(id);
+  }
+
+  @Post('user')
+  addUser(@Body() data: UserDTO): Object {
+    return this.userService.addUser(data);
   }
 }
