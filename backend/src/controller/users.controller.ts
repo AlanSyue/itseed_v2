@@ -26,12 +26,12 @@ export class UserController {
   }
 
   @Post('user')
-  addUser(@Body(new ValidationPipe()) userData: UserDTO): Object {
+  addUser(@Body(ValidationPipe) userData: UserDTO): Object {
     return this.userService.addUser(userData);
   }
 
   @Put('user/:userId')
-  updateUserById(@Param('userId') id, @Body(new ValidationPipe()) userData: UserDTO): Object {
+  updateUserById(@Param('userId') id, @Body(ValidationPipe) userData: UserDTO): Object {
     return this.userService.updateUserById(id, userData);
   }
 
