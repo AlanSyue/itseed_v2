@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../entity/users.entity';
-import { UserDTO } from '../DTO/users.dto';
 
 @Injectable()
 export class UserService {
@@ -11,7 +10,7 @@ export class UserService {
     private readonly usersRepository: Repository<Users>
   ) { }
 
-  addUser(userData: {email: string, password: string}) {
+  addUser(userData) {
     const user = new Users();
     user.email = userData.email;
     user.password = userData.password;
@@ -26,7 +25,7 @@ export class UserService {
     return this.usersRepository.findOne(userId);
   }
 
-  updateUserById(userId: number, userData: UserDTO) {
+  updateUserById(userId: number, userData) {
     return this.usersRepository.update(userId, userData);
   }
 
