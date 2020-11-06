@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
 import { UserDTO } from '../DTO/users.dto';
+import { ValidationPipe } from '../pipes/validation.pipe';
 
 @Controller()
 export class UserController {
@@ -25,12 +26,12 @@ export class UserController {
   }
 
   @Post('user')
-  addUser(@Body() userData: UserDTO): Object {
+  addUser(@Body(new ValidationPipe()) userData: UserDTO): Object {
     return this.userService.addUser(userData);
   }
 
   @Put('user/:userId')
-  updateUserById(@Param('userId') id, @Body() userData: UserDTO): Object {
+  updateUserById(@Param('userId') id, @Body(new ValidationPipe()) userData: UserDTO): Object {
     return this.userService.updateUserById(id, userData);
   }
 
