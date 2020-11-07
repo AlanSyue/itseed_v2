@@ -1,24 +1,18 @@
 {
-   "type": "postgres",
-   "host": "localhost",
-   "port": 5432,
-   "username": "postgres",
-   "password": "Pass2020!",
-   "database": "postgres",
-   "synchronize": false,
-   "logging": false,
-   "entities": [
-      "build/entity/**/*.entity{.ts,.js}"
-   ],
-   "migrations": [
-      "src/migration/**/*.{.ts,.js}"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-   }
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "Pass2020!",
+  "database": "postgres",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["build/entity/**/*.entity{.ts,.js}"],
+  "migrations": ["src/migration/**/*.{.ts,.js}"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
 }
