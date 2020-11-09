@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../entity/users.entity';
+import { hashSync } from 'bcrypt'
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,8 @@ export class UserService {
   addUser(userData) {
     const user = new Users();
     user.email = userData.email;
-    user.password = userData.password;
+    
+    user.password = hashSync(userData.password, 10);
     return this.usersRepository.save(user);
   }
 
