@@ -14,7 +14,6 @@ export class UserService {
   addUser(userData) {
     const user = new Users();
     user.email = userData.email;
-    
     user.password = hashSync(userData.password, 10);
     return this.usersRepository.save(user);
   }
