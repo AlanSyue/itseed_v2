@@ -8,14 +8,14 @@ import { hashSync, compare } from 'bcrypt';
 export class UserService {
   constructor(
     @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>
-  ) { }
+    private readonly usersRepository: Repository<Users>,
+  ) {}
 
   async register(userData) {
     const isUserExist = await this.usersRepository.count({
       where: {
-        email: userData.email
-      }
+        email: userData.email,
+      },
     });
     if (isUserExist) {
       return {};
@@ -27,17 +27,54 @@ export class UserService {
     return this.usersRepository.save(user);
   }
 
+  async login(userData) {
+    const userSaveData = await this.usersRepository.findOne({
+      where: {
+        email: userData.email,
+      },
+    });
+    if (!userSaveData) {
+      return {
+        'status': false,
+        'msg': '該信箱尚未註冊'
+      }
+    }
+    if (!userSaveData.is_verify) {
+        return {
+          status: false,
+          msg: '該信箱尚未驗證',
+        };
+    }
+    const verifyResult = await compare(
+      userData.password,
+      userSaveData.password,
+    );
+    if (!verifyResult) {
+        return {
+          status: false,
+          msg: '密碼錯誤',
+        };
+    }
+    return {
+      status: true,
+      msg: '',
+    };
+  }
+
   async verifyUser(hashData): Promise<Boolean> {
     const userData = await this.usersRepository.findOne({
       where: {
-        email: hashData.email
-      }
+        email: hashData.email,
+      },
     });
-    const verifyResult = await compare(userData.email + userData.created_at, hashData.hashToken);
+    const verifyResult = await compare(
+      userData.email + userData.created_at,
+      hashData.hashToken,
+    );
     this.updateUserById(userData.id, {
-      'is_verify': verifyResult
-    })
-    return verifyResult
+      is_verify: verifyResult,
+    });
+    return verifyResult;
   }
 
   addUser(userData) {
