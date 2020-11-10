@@ -26,7 +26,7 @@ import { ConfigModule } from '@nestjs/config';
         },
       },
       defaults: {
-        from: '"nest-modules" <modules@nestjs.com>',
+        from: `"${process.env.GMAIL_FROM_NAME}" <${process.env.GMAIL_ADDRESS}>`,
       },
     })
   ],

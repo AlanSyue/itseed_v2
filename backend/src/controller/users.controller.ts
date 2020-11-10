@@ -5,7 +5,8 @@ import {
   Put,
   Delete,
   Param,
-  Body
+  Body,
+  Query
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
 import { MailService } from '../service/mailer.service';
@@ -30,14 +31,47 @@ export class UserController {
     return this.userService.getUserById(id);
   }
 
-  @Get('send')
-  sendMail(): void {
-    return this.mailService.send();
+  @Get('verify/:email')
+  async verifyUser(@Param('email') email: string, @Query() query): Promise<Object> {
+    const verifyResult = await this.userService.verifyUser({
+      email: email,
+      hashToken: query.token
+    });
+    if (verifyResult === true) {
+      return {
+        'errCode': '0000',
+        'errMsg': '',
+        'errType': 'none',
+        'data': {}
+      }      
+    } else {
+      return {
+        'errCode': '1006',
+        'errMsg': '驗證連結錯誤，請重新發送驗證信',
+        'errType': 'alert',
+        'data': {}
+      }         
+    }
   }
 
-  @Post('user')
-  addUser(@Body(ValidationPipe) userData: createUserDTO): Object {
-    return this.userService.addUser(userData);
+  @Post('register')
+  async registerUser(@Body(ValidationPipe) userPostData: createUserDTO): Promise<Object> {
+    const userData = await this.userService.register(userPostData);
+    if (!userData) {
+      return {
+        'errCode': '1005',
+        'errMsg': '此信箱已經註冊',
+        'errType': 'alert',
+        'data': {}
+      }
+    }
+    this.mailService.send(userData);
+    return {
+      'errCode': '0000',
+      'errMsg': '',
+      'errType': 'none',
+      'data': {}
+    }
   }
 
   @Put('user/:userId')
