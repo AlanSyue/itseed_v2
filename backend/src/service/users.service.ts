@@ -93,6 +93,14 @@ export class UserService {
     return this.usersRepository.findOne(userId);
   }
 
+  async getUserByEmail(email: string) {
+    return await this.usersRepository.findOne({
+      where: {
+        email: email
+      }
+    })
+  }
+
   updateUserById(userId: number, userData) {
     return this.usersRepository.update(userId, userData);
   }
