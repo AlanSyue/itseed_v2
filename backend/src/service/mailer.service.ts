@@ -1,17 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { MailerService } from '@nestjs-modules/mailer';
+import { Users } from '../entity/users.entity';
 import { hashSync } from 'bcrypt';
 
 @Injectable()
 export class MailService {
-  constructor(private readonly mailerService: MailerService) {}
+  constructor(
+    @InjectRepository(Users)
+    private readonly usersRepository: Repository<Users>,
+    private readonly mailerService: MailerService
+  ) {}
 
   // TODO set register type
   public send(register): void {
     const registerEmail = register.email
-    const hashToken = hashSync(registerEmail + register.created_at, 5);
-    // TODO fix domain
-    const registerLink = `http://localhost:3000/verify/${registerEmail}?token=${hashToken}`
+    const hashToken = hashSync(registerEmail + Date.now(), 5);
+    this.usersRepository.update(register.id, {
+      token: hashToken
+    });
+    const registerLink = `${process.env.FRONTEND_DOMAIN}/verify/${registerEmail}?token=${hashToken}`
     // TODO Put html to template
     this.mailerService
       .sendMail({
