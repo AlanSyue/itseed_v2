@@ -65,12 +65,13 @@ export class UserService {
     const userData = await this.usersRepository.findOne({
       where: {
         email: hashData.email,
+        token: hashData.hashToken
       },
     });
-    const verifyResult = await compare(
-      userData.email + userData.created_at,
-      hashData.hashToken,
-    );
+    let verifyResult = true;
+    if (!userData) {
+      verifyResult = false;
+    }
     this.updateUserById(userData.id, {
       is_verify: verifyResult,
     });
@@ -90,6 +91,14 @@ export class UserService {
 
   getUserById(userId: number) {
     return this.usersRepository.findOne(userId);
+  }
+
+  async getUserByEmail(email: string) {
+    return await this.usersRepository.findOne({
+      where: {
+        email: email
+      }
+    })
   }
 
   updateUserById(userId: number, userData) {

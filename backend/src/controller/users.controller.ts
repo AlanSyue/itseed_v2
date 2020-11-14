@@ -57,6 +57,26 @@ export class UserController {
     }
   }
 
+  @Post('verify')
+  async reVerify(@Body() email: string) {
+    const registerData = await this.userService.getUserByEmail(email);
+    if (!registerData) {
+      return {
+        errCode: '1001',
+        errMsg: '該信箱尚未註冊',
+        errType: 'alert',
+        data: {},
+      };
+    }
+    this.mailService.send(registerData);
+    return {
+      errCode: '0000',
+      errMsg: '',
+      errType: 'none',
+      data: {},
+    };
+  }
+
   @Post('register')
   async userRegister(
     @Body(ValidationPipe) userPostData: createUserDTO,

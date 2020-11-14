@@ -19,6 +19,13 @@ export class Users {
     password: string;
 
     @Column({
+        type: 'varchar',
+        length: 255,
+        default: null      
+    })
+    token: string;
+
+    @Column({
         default: false,
     })
     is_verify: boolean;
