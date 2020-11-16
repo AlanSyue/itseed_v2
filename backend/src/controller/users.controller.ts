@@ -10,9 +10,10 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
 import { MailService } from '../service/mailer.service';
-import { createUserDTO } from '../DTO/user/createUser.dto';
-import { updateUserDTO } from '../DTO/user/updateUser.dto';
+import { createUserDTO } from '../DTO/users/createUser.dto';
+import { updateUserDTO } from '../DTO/users/updateUser.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
+import * as _ from 'lodash';
 
 @Controller()
 export class UserController {
@@ -58,9 +59,9 @@ export class UserController {
   }
 
   @Post('verify')
-  async reVerify(@Body() email: string) {
-    const registerData = await this.userService.getUserByEmail(email);
-    if (!registerData) {
+  async reVerify(@Body() postData) {
+    const registerData = await this.userService.getUserByEmail(postData.email);
+    if (_.isEmpty(registerData)) {
       return {
         errCode: '1001',
         errMsg: '該信箱尚未註冊',
@@ -68,7 +69,7 @@ export class UserController {
         data: {},
       };
     }
-    this.mailService.send(registerData);
+    this.mailService.send(registerData, postData.type);
     return {
       errCode: '0000',
       errMsg: '',
@@ -82,7 +83,7 @@ export class UserController {
     @Body(ValidationPipe) userPostData: createUserDTO,
   ): Promise<Object> {
     const userData = await this.userService.register(userPostData);
-    if (!userData) {
+    if (_.isEmpty(userData)) {
       return {
         errCode: '1005',
         errMsg: '此信箱已經註冊',
@@ -90,7 +91,7 @@ export class UserController {
         data: {},
       };
     }
-    this.mailService.send(userData);
+    this.mailService.send(userData, 'register');
     return {
       errCode: '0000',
       errMsg: '',
