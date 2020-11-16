@@ -4,44 +4,34 @@ import { Repository } from 'typeorm';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Users } from '../entity/users.entity';
 import { hashSync } from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MailService {
   constructor(
     @InjectRepository(Users)
     private readonly usersRepository: Repository<Users>,
-    private readonly mailerService: MailerService
+    private readonly mailerService: MailerService,
+    private configService: ConfigService,
   ) {}
 
   // TODO set register type
-  public send(register): void {
-    const registerEmail = register.email
-    const hashToken = hashSync(registerEmail + Date.now(), 5);
+  public send(register, type: string): void {
+    const emailTemplateData = this.configService.get<Object>('EMAIL_TEMPLATE_DATA');
+    const registerEmail = register.email;
+    const hashToken = hashSync(registerEmail + Date.now().toString(), 5);
     this.usersRepository.update(register.id, {
-      token: hashToken
+      token: hashToken,
     });
-    const registerLink = `${process.env.FRONTEND_DOMAIN}/verify/${registerEmail}?token=${hashToken}`
-    // TODO Put html to template
-    this.mailerService
-      .sendMail({
-        to: registerEmail,
-        from: '資訊種子',
-        subject: '資訊種子註冊信',
-        html: `
-          <p>
-              親愛的報名者您好! 謝謝您的註冊，<br>
-              這封信是由資訊種子的會員註冊系統所寄出，<br>
-              請點選下面的網址來進行註冊的下一個步驟：<br>
-          </p>
-          <a href="${registerLink}" >  點擊此連結註冊 </a>
-          <p>如以上網址無法通過認證，請聯繫我們。</p>
-
-          <p>※ 如果您不曾提出資訊種子的註冊申請，請您直接刪除本信，抱歉造成您的困擾！</p>
-          <p>※ 如果您無法連結信中網址，請回信讓我們知道。</p>
-
-          <br>
-          <p>第十八屆資訊種子培訓計畫敬上</p>
-        `,
-      });
+    const link = `${process.env.FRONTEND_DOMAIN}/verify/${registerEmail}/${type}?token=${hashToken}`;
+    this.mailerService.sendMail({
+      to: registerEmail,
+      from: '資訊種子',
+      subject: emailTemplateData[type].subject,
+      template: emailTemplateData[type].template,
+      context: {
+        link: link,
+      },
+    });
   }
 }
