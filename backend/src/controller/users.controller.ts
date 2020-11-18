@@ -28,7 +28,7 @@ export class UserController {
   }
 
   @Get('user/:userId')
-  findUser(@Param('userId') id): Object {
+  findUser(@Param('userId') id: number): Object {
     return this.userService.getUserById(id);
   }
 
@@ -122,10 +122,10 @@ export class UserController {
   }
 
   @Put('user/:userId')
-  updateUserById(
+  async updateUserById(
     @Param('userId') id,
     @Body(ValidationPipe) userData: updateUserDTO,
-  ): Object {
+  ): Promise<Object> {
     return this.userService.updateUserById(id, userData);
   }
 
