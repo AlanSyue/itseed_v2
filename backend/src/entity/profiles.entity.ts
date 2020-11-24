@@ -6,6 +6,11 @@ export enum gender {
     other = "other"    
 }
 
+export enum education {
+    bachelor = "bachelor",
+    master = "master"  
+}
+
 @Entity('profiles')
 export class Profiles {
 
@@ -27,6 +32,34 @@ export class Profiles {
         default: gender.male
     })
     gender: gender;
+
+    @Column({
+        type: 'varchar',
+        length: 255,
+    })
+    school: string;
+
+    @Column({
+        type: 'varchar',
+        length: 255,
+    })
+    department: string;
+
+    @Column({
+        type: "enum",
+        enum: education,
+        default: education.bachelor
+    })
+    education: education;
+
+    @Column()
+    grade: number;
+
+    @Column({
+        type: 'varchar',
+        length: 255,
+    })
+    reference: string;
 
     @Column({
         type: 'timestamp',
