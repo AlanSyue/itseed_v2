@@ -146,14 +146,23 @@ export class UserController {
   }
 
   @Get('profiles')
-  getProfiles():Object {
+  getProfiles(): Object {
     return this.profilesService.getProfiles();
   }
 
   @Post('profile')
-  addProfile(
+  async addProfile(
     @Body() profileData: ProfileDTO
-  ):Object {
+  ): Promise<Object> {
+    const userData = await this.userService.getUserById(profileData.user_id);
+    if (_.isEmpty(userData)) {
+      return {
+        errCode: '1001',
+        errMsg: '查無此 user',
+        errType: 'alert',
+        data: {},
+      };
+    }
     return this.profilesService.addProfile(profileData);
   }
 }

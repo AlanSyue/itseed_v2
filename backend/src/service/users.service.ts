@@ -89,11 +89,11 @@ export class UserService {
     return this.usersRepository.find();
   }
 
-  getUserById(userId: number) {
+  async getUserById(userId: number): Promise<Object> {
     return this.usersRepository.findOne(userId);
   }
 
-  async getUserByEmail(email: string) {
+  async getUserByEmail(email: string): Promise<Object> {
     return await this.usersRepository.findOne({
       where: {
         email: email
