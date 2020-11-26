@@ -15,6 +15,14 @@ import { updateUserDTO } from '../DTO/users/updateUser.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import * as _ from 'lodash';
 
+interface VerifyQuery {
+  token: string
+}
+
+interface PostData {
+  email: string;
+  type: string
+}
 @Controller()
 export class UserController {
   constructor(
@@ -28,14 +36,14 @@ export class UserController {
   }
 
   @Get('user/:userId')
-  findUser(@Param('userId') id): Object {
+  findUser(@Param('userId') id: number): Object {
     return this.userService.getUserById(id);
   }
 
   @Get('verify/:email')
   async verifyUser(
     @Param('email') email: string,
-    @Query() query,
+    @Query() query: VerifyQuery,
   ): Promise<Object> {
     const verifyResult = await this.userService.verifyUser({
       email: email,
@@ -59,7 +67,7 @@ export class UserController {
   }
 
   @Post('verify')
-  async reVerify(@Body() postData) {
+  async reVerify(@Body() postData: PostData) {
     const registerData = await this.userService.getUserByEmail(postData.email);
     if (_.isEmpty(registerData)) {
       return {
@@ -123,14 +131,14 @@ export class UserController {
 
   @Put('user/:userId')
   updateUserById(
-    @Param('userId') id,
+    @Param('userId') id: number,
     @Body(ValidationPipe) userData: updateUserDTO,
   ): Object {
     return this.userService.updateUserById(id, userData);
   }
 
   @Delete('user/:userId')
-  deleteUserById(@Param('userId') id): Object {
+  deleteUserById(@Param('userId') id: number): Object {
     return this.userService.deleteUserById(id);
   }
 }
