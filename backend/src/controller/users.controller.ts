@@ -9,16 +9,27 @@ import {
   Query
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
+import { ProfilesService } from '../service/profiles.service';
 import { MailService } from '../service/mailer.service';
 import { createUserDTO } from '../DTO/users/createUser.dto';
 import { updateUserDTO } from '../DTO/users/updateUser.dto';
+import { ProfileDTO } from '../DTO/profiles/profile.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import * as _ from 'lodash';
 
+interface VerifyQuery {
+  token: string
+}
+
+interface PostData {
+  email: string;
+  type: string
+}
 @Controller()
 export class UserController {
   constructor(
     private readonly userService: UserService,
+    private readonly profilesService: ProfilesService,
     private readonly mailService: MailService,
   ) {}
 
@@ -35,7 +46,7 @@ export class UserController {
   @Get('verify/:email')
   async verifyUser(
     @Param('email') email: string,
-    @Query() query,
+    @Query() query: VerifyQuery,
   ): Promise<Object> {
     const verifyResult = await this.userService.verifyUser({
       email: email,
@@ -59,7 +70,7 @@ export class UserController {
   }
 
   @Post('verify')
-  async reVerify(@Body() postData) {
+  async reVerify(@Body() postData: PostData) {
     const registerData = await this.userService.getUserByEmail(postData.email);
     if (_.isEmpty(registerData)) {
       return {
@@ -123,14 +134,52 @@ export class UserController {
 
   @Put('user/:userId')
   async updateUserById(
-    @Param('userId') id,
+    @Param('userId') id: number,
     @Body(ValidationPipe) userData: updateUserDTO,
   ): Promise<Object> {
     return this.userService.updateUserById(id, userData);
   }
 
   @Delete('user/:userId')
-  deleteUserById(@Param('userId') id): Object {
+  deleteUserById(@Param('userId') id: number): Object {
     return this.userService.deleteUserById(id);
+  }
+
+  @Get('profiles')
+  getProfiles(): Object {
+    return this.profilesService.getProfiles();
+  }
+
+  @Post('profile')
+  async addProfile(
+    @Body() profileData: ProfileDTO
+  ): Promise<Object> {
+    const userData = await this.userService.getUserById(profileData.user_id);
+    if (_.isEmpty(userData)) {
+      return {
+        errCode: '1001',
+        errMsg: '查無此 user',
+        errType: 'alert',
+        data: {},
+      };
+    }
+    return this.profilesService.addProfile(profileData);
+  }
+
+  @Put('profile/:userId')
+  async updateProfile(
+    @Param('userId') id: number,
+    @Body() profileData: ProfileDTO
+  ): Promise<Object> {
+    const profile = await this.profilesService.getProfileByUserId(id);
+    if (_.isEmpty(profile)) {
+      return {
+        errCode: '1001',
+        errMsg: '查無此 user',
+        errType: 'alert',
+        data: {},
+      };
+    }
+    return this.profilesService.updateProfile(profile.id, profileData);
   }
 }
