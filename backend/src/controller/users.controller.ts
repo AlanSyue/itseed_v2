@@ -165,4 +165,21 @@ export class UserController {
     }
     return this.profilesService.addProfile(profileData);
   }
+
+  @Put('profile/:userId')
+  async updateProfile(
+    @Param('userId') id: number,
+    @Body() profileData: ProfileDTO
+  ) {
+    const profile = await this.profilesService.getProfileByUserId(id);
+    if (_.isEmpty(profile)) {
+      return {
+        errCode: '1001',
+        errMsg: '查無此 user',
+        errType: 'alert',
+        data: {},
+      };
+    }
+    return this.profilesService.updateProfile(profile.id, profileData);
+  }
 }

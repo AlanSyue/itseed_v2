@@ -18,6 +18,9 @@ export enum education {
   
 export class ProfileDTO {
     @IsInt()
+    id: number;
+
+    @IsInt()
     user_id: number;
 
     @IsString()

@@ -13,6 +13,14 @@ export class ProfilesService {
     async getProfiles(): Promise<Object> {
         return this.profilesRepository.find();
     }
+
+    async getProfileByUserId(userId: number): Promise<ProfileDTO> {
+        return await this.profilesRepository.findOne({
+            where: {
+                user_id: userId
+            }
+        })
+    }
     
     async addProfile(profileData: ProfileDTO): Promise<ProfileDTO> {
         const profile = new Profiles();
@@ -25,5 +33,9 @@ export class ProfilesService {
         profile.grade = profileData.grade;
         profile.reference = profileData.reference;
         return this.profilesRepository.save(profile);
+    }
+
+    async updateProfile(id: number, profileData: ProfileDTO): Promise<Object> {
+        return this.profilesRepository.update(id, profileData);
     }
 }
