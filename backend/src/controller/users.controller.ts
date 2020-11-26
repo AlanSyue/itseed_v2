@@ -133,10 +133,10 @@ export class UserController {
   }
 
   @Put('user/:userId')
-  updateUserById(
+  async updateUserById(
     @Param('userId') id: number,
     @Body(ValidationPipe) userData: updateUserDTO,
-  ): Object {
+  ): Promise<Object> {
     return this.userService.updateUserById(id, userData);
   }
 
