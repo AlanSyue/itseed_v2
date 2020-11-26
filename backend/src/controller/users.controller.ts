@@ -170,7 +170,7 @@ export class UserController {
   async updateProfile(
     @Param('userId') id: number,
     @Body() profileData: ProfileDTO
-  ) {
+  ): Promise<Object> {
     const profile = await this.profilesService.getProfileByUserId(id);
     if (_.isEmpty(profile)) {
       return {
