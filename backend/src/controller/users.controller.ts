@@ -9,9 +9,11 @@ import {
   Query
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
+import { ProfilesService } from '../service/profiles.service';
 import { MailService } from '../service/mailer.service';
 import { createUserDTO } from '../DTO/users/createUser.dto';
 import { updateUserDTO } from '../DTO/users/updateUser.dto';
+import { ProfileDTO } from '../DTO/profiles/profile.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import * as _ from 'lodash';
 
@@ -27,6 +29,7 @@ interface PostData {
 export class UserController {
   constructor(
     private readonly userService: UserService,
+    private readonly profilesService: ProfilesService,
     private readonly mailService: MailService,
   ) {}
 
@@ -140,5 +143,17 @@ export class UserController {
   @Delete('user/:userId')
   deleteUserById(@Param('userId') id: number): Object {
     return this.userService.deleteUserById(id);
+  }
+
+  @Get('profiles')
+  getProfiles():Object {
+    return this.profilesService.getProfiles();
+  }
+
+  @Post('profile')
+  addProfile(
+    @Body() profileData: ProfileDTO
+  ):Object {
+    return this.profilesService.addProfile(profileData);
   }
 }
