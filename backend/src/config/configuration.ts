@@ -9,4 +9,5 @@ export default () => ({
       template: 'resetPasswordEmail'
     },
   },
+  SECRET_KEY: process.env.SECRET_KEY
 });

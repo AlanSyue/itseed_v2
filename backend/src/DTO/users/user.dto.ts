@@ -2,10 +2,14 @@ import {
     IsEmail,
     IsString,
     IsBoolean,
-    IsDate
+    IsDate,
+    IsInt
   } from 'class-validator';
   
   export class UserDTO {
+    @IsInt()
+    id: number;
+    
     @IsEmail()
     email: string;
   
