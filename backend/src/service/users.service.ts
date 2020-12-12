@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../entity/users.entity';
 import { hashSync, compare } from 'bcrypt';
+import { UserDTO } from '../DTO/users/user.dto';
+import { createUserDTO } from 'src/DTO/users/createUser.dto';
 
 @Injectable()
 export class UserService {
@@ -27,38 +29,26 @@ export class UserService {
     return this.usersRepository.save(user);
   }
 
-  async login(userData) {
+  async findUserData(userData: createUserDTO): Promise<UserDTO> {
     const userSaveData = await this.usersRepository.findOne({
       where: {
         email: userData.email,
       },
     });
     if (!userSaveData) {
-      return {
-        'status': false,
-        'msg': '該信箱尚未註冊'
-      }
+      return null;
     }
     if (!userSaveData.is_verify) {
-        return {
-          status: false,
-          msg: '該信箱尚未驗證',
-        };
+      return null;
     }
     const verifyResult = await compare(
       userData.password,
       userSaveData.password,
     );
     if (!verifyResult) {
-        return {
-          status: false,
-          msg: '密碼錯誤',
-        };
+      return null;
     }
-    return {
-      status: true,
-      msg: '',
-    };
+    return userSaveData;
   }
 
   async verifyUser(hashData): Promise<Boolean> {
@@ -93,7 +83,7 @@ export class UserService {
     return this.usersRepository.findOne(userId);
   }
 
-  async getUserByEmail(email: string): Promise<Object> {
+  async getUserByEmail(email: string): Promise<UserDTO> {
     return await this.usersRepository.findOne({
       where: {
         email: email

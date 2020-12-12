@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './module/users.module';
+import { AuthModule } from './module/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
 import { ConfigModule } from '@nestjs/config';
@@ -12,6 +13,7 @@ import configuration from './config/configuration';
   imports: [
     TypeOrmModule.forRoot(),
     UserModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
@@ -39,7 +41,7 @@ import configuration from './config/configuration';
           },
         },
       })
-    }),
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

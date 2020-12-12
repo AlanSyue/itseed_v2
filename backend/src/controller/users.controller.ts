@@ -6,7 +6,8 @@ import {
   Delete,
   Param,
   Body,
-  Query
+  Query,
+  UseGuards
 } from '@nestjs/common';
 import { UserService } from '../service/users.service';
 import { ProfilesService } from '../service/profiles.service';
@@ -15,6 +16,7 @@ import { createUserDTO } from '../DTO/users/createUser.dto';
 import { updateUserDTO } from '../DTO/users/updateUser.dto';
 import { ProfileDTO } from '../DTO/profiles/profile.dto';
 import { ValidationPipe } from '../pipes/validation.pipe';
+import { JwtAuthGuard } from '../passport/auth/jwt-auth.guard';
 import * as _ from 'lodash';
 
 interface VerifyQuery {
@@ -32,20 +34,23 @@ export class UserController {
     private readonly profilesService: ProfilesService,
     private readonly mailService: MailService,
   ) {}
-
+  
+  @UseGuards(JwtAuthGuard)
   @Get('users')
   findAll(): Object {
     return this.userService.getAllUser();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('user/:userId')
   findUser(@Param('userId') id: number): Object {
     return this.userService.getUserById(id);
   }
 
-  @Get('verify/:email')
+  @Get('verify/:email/:type')
   async verifyUser(
     @Param('email') email: string,
+    @Param('type') type: string,
     @Query() query: VerifyQuery,
   ): Promise<Object> {
     const verifyResult = await this.userService.verifyUser({
@@ -103,27 +108,6 @@ export class UserController {
       };
     }
     this.mailService.send(userData, 'register');
-    return {
-      errCode: '0000',
-      errMsg: '',
-      errType: 'none',
-      data: {},
-    };
-  }
-
-  @Post('login')
-  async userLogin(
-    @Body(ValidationPipe) userPostData: createUserDTO,
-  ): Promise<Object> {
-    const loginResult = await this.userService.login(userPostData);
-    if (!loginResult.status) {
-      return {
-        errCode: '1001',
-        errMsg: loginResult.msg,
-        errType: 'alert',
-        data: {},
-      };
-    }
     return {
       errCode: '0000',
       errMsg: '',
