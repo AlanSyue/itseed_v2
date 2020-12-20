@@ -1,3 +1,4 @@
+docker pull postgres
 mkdir ${HOME}/postgres-data/
 docker run -d \
 	--name dev-postgres \
