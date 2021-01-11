@@ -8,6 +8,6 @@ RUN yarn install
 COPY . .
 # Building app
 RUN yarn build
-EXPOSE 80
+EXPOSE 3000
 # Running the app
 CMD [ "yarn", "start" ]
