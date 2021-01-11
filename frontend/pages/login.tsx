@@ -130,7 +130,6 @@ const Login = () => {
                                  帳號：
                             </span>
                             <input
-                                autofocus="autofocus"
                                 placeholder="電子信箱"
                                 type="email"
                             />

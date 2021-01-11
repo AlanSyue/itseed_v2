@@ -105,7 +105,6 @@ const Register = () => {
                                  姓名：
                             </span>
                         <input
-                            autofocus="autofocus"
                             placeholder="姓名"
                             type="name"
                         />
@@ -116,7 +115,6 @@ const Register = () => {
                                  帳號：
                             </span>
                         <input
-                            autofocus="autofocus"
                             placeholder="電子信箱"
                             type="email"
                         />
