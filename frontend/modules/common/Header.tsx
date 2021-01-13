@@ -2,26 +2,10 @@ import Head from 'next/head'
 import styled from 'styled-components';
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
-const Logo = styled.div`
-  height: 5em;
-  margin: 0 auto;
-`;
-
 const LogoImg = styled.img`
   float: left;
   margin-left: 4em;
   width: 50%;
-`;
-
-const Menu = styled.ul`
-  list-style: none;
-  margin-right: 50px;
-  float: right;
-`;
-
-const MenuLi = styled.li`
-  padding: 10px 20px;
-  float: left;
 `;
 
 const Btn = styled.button`
