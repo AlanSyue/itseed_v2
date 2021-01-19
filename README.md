@@ -9,10 +9,18 @@ The itseed's website is refactoring...
 ### frontend
 1. Next.js
 
-## HOW to build database
-Run command and it would build postgres and pgadmin using docker
+### database
+PostgreSQL
+
+## Set Up
+### backend
 ```
-sh backend/db_build.sh
+sh backend/development/DEV_BUILD.sh
+```
+
+### frontend
+```
+sh frontend/development/DEV_BUILD.sh
 ```
 
 ## database schema
