@@ -11,7 +11,7 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "${BACKEND_PORT:-9229}:3000"
-    command: npm run start:dev
+    command: ${NEST_COMMAND}
     env_file:
       - .env
     networks:
