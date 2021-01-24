@@ -1,0 +1,43 @@
+# vim: ft=nginx
+upstream backend {
+    server ${NEST_HOST}:${NEST_PORT};
+}
+server {
+    listen 80;
+    server_name ${BACKEND_SERVER_NAME};
+    #root /app/public;
+    client_max_body_size ${NGINX_MAX_BODY};
+
+    location / {
+        # try_files $uri =404;
+        rewrite ^/api/(.*)$ /$1;
+        proxy_pass  http://backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
+
+upstream frontend {
+    server ${NEXT_HOST}:${NEXT_PORT};
+}
+server {
+    listen 80;
+    server_name ${FRONTEND_SERVER_NAME};
+    #root /app/public;
+    client_max_body_size ${NGINX_MAX_BODY};
+
+    location / {
+        # try_files $uri =404;
+        rewrite ^/api/(.*)$ /$1;
+        proxy_pass  http://frontend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
+

@@ -1,2 +1,4 @@
-backend/.env
+**development.env
+**.env
+backend
 backend/yarn.lock
