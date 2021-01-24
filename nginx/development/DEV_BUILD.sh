@@ -1,3 +1,3 @@
 cd ..
-export NEST_COMMAND="npm run start"
+export ENVIRONMENT=development
 docker-compose up --build -V -d

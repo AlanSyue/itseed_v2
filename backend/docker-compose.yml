@@ -11,7 +11,7 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "${BACKEND_PORT:-9229}:3000"
-    command: npm run start:dev
+    command: ${NEST_COMMAND}
     env_file:
       - .env
     networks:
@@ -46,27 +46,10 @@ services:
       - "${PGADMIN_PORT:-5123}:80"
     networks:
       - webnet
-  
-  nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile-nginx
-    container_name: nest-nginx
-    depends_on:
-      - main
-    environment:
-      - NGINX_SERVER_NAME=localhost
-      - NEST_HOST=main
-      - NEST_PORT=3000
-      - NGINX_MAX_BODY=100M
-    ports:
-      - "${NGINX_PORT:-80}:80"
-    networks:
-      - webnet
 
 networks:
   webnet:
-    driver: bridge
+
 volumes:
   pgdata:
   pgadmin:

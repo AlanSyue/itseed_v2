@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  next:
+    container_name: next
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "${FRONTEND_PORT:-49160}:3000"
+    command: npm run dev

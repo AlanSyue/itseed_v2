@@ -1,13 +1,29 @@
-FROM node:10
-# Setting working directory. All the path will be relative to WORKDIR
+FROM node:14.15-alpine As development
+
 WORKDIR /usr/src/app
-# Installing dependencies
+
 COPY package*.json ./
-RUN yarn install
-# Copying source files
+
+RUN npm install
+
 COPY . .
-# Building app
-RUN yarn build
-EXPOSE 3000
-# Running the app
-CMD [ "yarn", "start" ]
+
+# RUN npm run build
+
+FROM node:14.15-alpine as production
+
+ARG NODE_ENV=production
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]

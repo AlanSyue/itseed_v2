@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    container_name: nginx
+    env_file:
+      - ${ENVIRONMENT-development}.env
+    ports:
+      - "${NGINX_PORT:-80}:80"
