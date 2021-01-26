@@ -1,8 +1,4 @@
 # vim: ft=nginx
-# Default server
-server {
-    return 404;
-}
 
 upstream backend {
     server ${NEST_HOST}:${NEST_PORT};
@@ -15,7 +11,6 @@ server {
 
     location / {
         # try_files $uri =404;
-        rewrite ^/api/(.*)$ /$1;
         proxy_pass  http://backend;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
