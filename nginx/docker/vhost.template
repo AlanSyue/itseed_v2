@@ -1,4 +1,9 @@
 # vim: ft=nginx
+# Default server
+server {
+    return 404;
+}
+
 upstream backend {
     server ${NEST_HOST}:${NEST_PORT};
 }
