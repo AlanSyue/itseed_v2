@@ -9,6 +9,8 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    env_file:
+      - .env.local
     ports:
       - "${FRONTEND_PORT:-49160}:3000"
     command: npm run dev
