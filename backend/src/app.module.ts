@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './module/users.module';
+import { ContentsModule } from './module/contents.module';
 import { AuthModule } from './module/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
@@ -12,6 +13,7 @@ import configuration from './config/configuration';
     TypeOrmModule.forRoot(),
     UserModule,
     AuthModule,
+    ContentsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
